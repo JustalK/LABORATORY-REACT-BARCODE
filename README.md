@@ -39,6 +39,7 @@ The interesting part of this scanner is the format is shown beside the value of 
 
 - **Experience1**: I am just playing with all the options possible with the library for seeing what we can do
 - **Experience2**: I have regrouped the most interesting formats in one single page to rapidly find the one I want
+- **Experience3**: Playing with the check of the validity of a codebar
 
 ## Running
 
