@@ -40,6 +40,18 @@ export function Experience1() {
         <Barcode value="LETTER123456789012" format="CODE128" />
       </li>
       <li>
+        <div>A barcode with format CODE128</div>
+        <Barcode value="12" format="CODE128" width={4} />
+      </li>
+      <li>
+        <div>A barcode with format CODE128</div>
+        <Barcode value="11" format="CODE128" width={4} />
+      </li>
+      <li>
+        <div>A barcode with format CODE128</div>
+        <Barcode value="10" format="CODE128" width={16} />
+      </li>
+      <li>
         <div>A barcode with format ITF14</div>
         <Barcode value="12345678901231" format="ITF14" />
       </li>

@@ -35,6 +35,39 @@ If nothing has been specified, I will mostly used the CODE128 format for his ver
 For testing the barcode of my app, I have been using a scanner from the google play store: **QR Code Reader**
 The interesting part of this scanner is the format is shown beside the value of the barcode. It makes the test of the format quite easy.
 
+#### Code128
+
+**How to read a CODE128 barcode**
+
+![./documentation/pattern.png](./documentation/pattern.png)
+
+I have purposedly increased the size of the barcode to make it simpler to read. The value of this barcode is **10**.
+In the barcode above, I have splitted each part in different colors:
+
+- **Blue**: Start Code (value: 105 | pattern: 11010011100)
+- **Red**: The value of the barcode (value: 10 | pattern: 11001000100)
+- **Orange**: The Checksum (value: 12 | 10110011100)
+- **Violet**: Stop Code (value: - | 1100011101011)
+
+The Stop code is the only pattern with 13 digits.
+
+The barcode is encoded as follow:
+
+```
+[Start C] [FNC1] 10 [Check symbol] [Stop]
+```
+
+The FNC1 which is a number indicating a GS1-128 bar code which begins with a 2- 3- or 4-digit application identifier assigned by the Uniform Code Council.
+
+**How to caculate Checksum**
+
+- Take the value of the bar code dans the start code (In my case, it's a code128 C, so the value of the start code is 105. If it was mod A: 103 and mod B: 104)
+- 105 | 10
+- Add a weight of 1 for the start code and a weight of 1 incremented for every 2 digits of the value of the bar code
+- 105 * 1 | 10 * 1   (if there were more, it would be multiply 2 then multiply by 3...)
+- Sum everything: 105 + 10 = 115
+- Calculate the modulo by 103: 115 mod 103 = **12**
+
 #### Checksum in MSI mod
 
 If you use the QR Code Reader over the MSI code, you should get some strange values. Those values are in fact the calculated checksum. Let's take for example, 1234567 for two differents MSI mod.
